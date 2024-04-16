@@ -6,6 +6,7 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.ktorapp.database.KtorDatabase
 import com.example.ktorapp.viewmodel.LoginScreenViewModel
+import com.example.ktorapp.viewmodel.PhotoViewModel
 import com.example.ktorapp.viewmodel.PostViewModel
 import com.example.ktorapp.viewmodel.RegistrationScreenViewModel
 
@@ -28,6 +29,11 @@ object AppViewModelProvider {
         initializer {
             PostViewModel(ktorApplication().container.onlinePostRepository)
         }
+
+        initializer {
+            PhotoViewModel(ktorApplication().container.onlinePhotoRepository)
+        }
+
 
     }
 }

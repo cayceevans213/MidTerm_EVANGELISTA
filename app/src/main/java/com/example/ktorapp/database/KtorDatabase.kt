@@ -4,15 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.ktorapp.data.dao.PhotoDao
 import com.example.ktorapp.data.dao.PostDao
 import com.example.ktorapp.data.dao.UserProfileDao
+import com.example.ktorapp.model.Photo
 import com.example.ktorapp.model.Post
 import com.example.ktorapp.model.UserProfile
 
-@Database(entities = [UserProfile::class, Post::class,], version = 1, exportSchema = true)
+@Database(entities = [UserProfile::class, Post::class, Photo::class,], version = 1, exportSchema = true)
 abstract class KtorDatabase : RoomDatabase() {
     abstract fun UserProfileDao(): UserProfileDao
     abstract fun PostDao(): PostDao
+    abstract fun PhotoDao(): PhotoDao
 
     companion object {
         @Volatile
