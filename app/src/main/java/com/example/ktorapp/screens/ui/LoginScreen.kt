@@ -12,8 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Visibility
@@ -80,11 +82,13 @@ fun LoginScreen(
     val context = LocalContext.current
     val preferencesManager = remember { PreferencesManager(context) }
 
+    val scrollState = rememberScrollState()
+
 
     Scaffold(
         bottomBar = {
             BottomAppBar(
-                modifier = Modifier.height(250.dp),
+                modifier = Modifier.height(295.dp).verticalScroll(scrollState),
                 containerColor = Color.White
             ) {
                 Column(
@@ -185,11 +189,11 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(0.dp)
         ) {
-            Spacer(modifier = Modifier.height(0.dp))
+            Spacer(modifier = Modifier.height(30.dp))
             Image(
                 painter = painterResource(id = R.drawable.fitness_logo),
                 contentDescription = "Fitness Logo",
-                modifier = Modifier.size(300.dp)
+                modifier = Modifier.size(250.dp)
             )
             Text(
                 text = "Welcome back!",

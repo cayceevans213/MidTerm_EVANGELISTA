@@ -14,9 +14,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
@@ -76,6 +79,8 @@ fun RegistrationScreen(
     var passwordShow: Boolean by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
 
+    val scrollState = rememberScrollState()
+
     val showDialog = remember { mutableStateOf( false ) }
     if (showDialog.value){
         registrationAlert(
@@ -99,6 +104,7 @@ fun RegistrationScreen(
                 .padding(innerPadding)
                 .fillMaxSize()
                 .fillMaxWidth()
+                .verticalScroll(scrollState)
                 .background(Color.White),
             verticalArrangement = Arrangement.spacedBy(0.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -108,9 +114,9 @@ fun RegistrationScreen(
                 painter = painterResource(id = R.drawable.fitness_logo),
                 contentDescription = "Fitness Logo",
                 modifier = Modifier
-                    .height(200.dp)
+
                     .fillMaxWidth()
-                    .padding(start = 25.dp, end = 25.dp)
+                    .padding(start = 25.dp, end = 25.dp).size(250.dp)
             )
             Text(
                 text = "Register an account",
