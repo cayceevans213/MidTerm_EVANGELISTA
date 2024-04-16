@@ -37,6 +37,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -125,24 +126,35 @@ fun HomePage(
         }
     ) {
         Column(modifier = Modifier.background(Color.White).fillMaxSize().padding(it)) {
-            Button(onClick = {
-                coroutineScope.launch {
-                    viewModel.getPosts()
-                    showPostData = true
-                    showPhotoData = false
-                }
-            }) {
-                Text("Get posts")
-            }
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            viewModel.getPosts()
+                            showPostData = true
+                            showPhotoData = false
+                        }
+                    },
 
-            Button(onClick = {
-                coroutineScope.launch {
-                    photoViewModel.getPhoto()
-                    showPhotoData = true
-                    showPostData = false
+                ) {
+                    Text("Get posts")
                 }
-            }) {
-                Text("Get Photo")
+
+                Button(
+                    onClick = {
+                        coroutineScope.launch {
+                            photoViewModel.getPhoto()
+                            showPhotoData = true
+                            showPostData = false
+                        }
+                    },
+
+                ) {
+                    Text("Get Photo")
+                }
             }
 
             if (showPostData) {
@@ -156,7 +168,6 @@ fun HomePage(
                     }
                 }
             }
-
 
             if (showPhotoData) {
                 LazyColumn {
