@@ -18,6 +18,7 @@ import com.example.ktorapp.navigation.routes.MainScreen
 import com.example.ktorapp.preferences.PreferencesManager
 import com.example.ktorapp.screens.ui.HomePage
 import com.example.ktorapp.screens.ui.LoginScreen
+import com.example.ktorapp.screens.ui.Profile
 import com.example.ktorapp.screens.ui.RegistrationScreen
 import com.example.ktorapp.screens.ui.SplashScreen
 import com.example.ktorapp.viewmodel.ScreenViewModel
@@ -135,6 +136,9 @@ fun MainHomeScreen(
             }
             composable(route = MainScreen.Splash.name) {
                 SplashScreen(navController, screenViewModel)
+            }
+            composable(route = MainScreen.Profile.name) {
+                Profile(navController, screenViewModel)
             }
 
         }

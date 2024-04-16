@@ -2,19 +2,37 @@ package com.example.ktorapp.screens.ui
 
 import android.annotation.SuppressLint
 import android.app.Application
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBackIos
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.BottomAppBarDefaults
+import androidx.compose.material3.BottomAppBarDefaults.containerColor
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TabRowDefaults.contentColor
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -49,22 +67,45 @@ fun HomePage(
     val postsState = viewModel.postsUiState
 
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Button(
+                        onClick = {
+                            navController.navigate(MainScreen.Profile.name)
+                        }
+                    ) {
+                        Text("Profile")
+                    }
+                },
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Gray),
+                actions = {
+
+                }
+            )
+        },
         bottomBar = {
-            Button(onClick = {
+            BottomAppBar(
+                containerColor = Color.Gray,
+            ) {
 
-                screenViewModel.unsetLogin()
-                preferencesManager.saveData("login", "")
-                preferencesManager.saveData("username", "")
-                preferencesManager.saveData("firstName", "")
-                preferencesManager.saveData("lastName", "")
-                navController.navigate(MainScreen.Splash.name)
+                Button(onClick = {
 
-            }) {
-                Text("SignOut")
+                    screenViewModel.unsetLogin()
+                    preferencesManager.saveData("login", "")
+                    preferencesManager.saveData("username", "")
+                    preferencesManager.saveData("firstName", "")
+                    preferencesManager.saveData("lastName", "")
+                    navController.navigate(MainScreen.Splash.name)
+
+                }) {
+                    Text("SignOut")
+                }
             }
+
         }
     ) {
-        Column (modifier = Modifier.padding(it)){
+        Column (modifier = Modifier.background(Color.White).fillMaxSize().padding(it)){
             Button(onClick = {
                 coroutineScope.launch {
                     viewModel.getPosts()
