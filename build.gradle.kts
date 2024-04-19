@@ -1,17 +1,23 @@
 // Top-level build file where you can add configuration options common to all subprojects/modules.
+object libs {
+    val agp = "com.android.tools.build:gradle:7.0.4"
+    val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+    val kotlinSerialization = "org.jetbrains.kotlin:kotlin-serialization:1.6.10"
+    val mavenPublishPlugin = "com.android.tools.build:gradle:7.0.4" // Example placeholder, replace with actual dependency
+}
 
 buildscript {
-    ext {
-        val compose_version = "1.1.0-rc01"
-    }
+
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.0.4")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
+        classpath(libs.agp)
+        classpath(libs.kotlin)
+        classpath(libs.kotlinSerialization)
+        classpath(libs.mavenPublishPlugin)
     }
 }
 
