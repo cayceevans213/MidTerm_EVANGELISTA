@@ -6,7 +6,6 @@ object HttpRoutes {
     const val login: String = "$BASEURL/api.php"
 
     private const val URL = "https://jsonplaceholder.typicode.com"
-
     const val POSTS = "$URL/posts"
 
     private const val PHOTOURL: String = "https://jsonplaceholder.typicode.com"
