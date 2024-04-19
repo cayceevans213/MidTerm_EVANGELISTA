@@ -33,4 +33,5 @@ interface UserRepository {
      * Update user in the data source
      */
     suspend fun updateUser(user: UserProfile)
+
 }
