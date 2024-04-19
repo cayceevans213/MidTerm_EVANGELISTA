@@ -1,6 +1,7 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-
+    ext {
+        val compose_version = "1.1.0-rc01"
+    }
     repositories {
         google()
         mavenCentral()
@@ -14,8 +15,6 @@ buildscript {
     }
 }
 
-tasks.register("clean") {
-    doLast {
-        delete(rootProject.buildDir)
-    }
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
 }
