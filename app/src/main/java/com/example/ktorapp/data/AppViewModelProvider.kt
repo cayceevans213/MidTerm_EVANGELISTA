@@ -22,7 +22,7 @@ object AppViewModelProvider {
 
         initializer {
             LoginScreenViewModel(
-                ktorApplication().container.onlineUserRepository,   ktorApplication().container.offlineUserRepository
+                ktorApplication().container.onlineUserRepository,  ktorApplication().container.offlineUserRepository
             )
         }
 
