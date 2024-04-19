@@ -13,8 +13,8 @@ import com.example.ktorapp.data.onlineRepository.OnlineUserRepository
 import com.example.ktorapp.database.KtorDatabase
 
 interface AppContainer {
-    val userRepository: UserRepository
-    val onlineUserRepository: UserRepository
+    val offlineUserRepository: OfflineUserRepository
+    val onlineUserRepository: OnlineUserRepository
     val onlinePostRepository: OnlinePostRepository
     val postRepository: PostRepository
     val photoRepository: PhotoRepository
@@ -25,9 +25,8 @@ interface AppContainer {
         /**
          * Implementation for [userRepository]
          */
-        override val userRepository: UserRepository by lazy {
-            OfflineUserRepository(KtorDatabase.getDatabase(context).UserProfileDao())
-        }
+        override val offlineUserRepository: OfflineUserRepository
+            get() =   OfflineUserRepository(KtorDatabase.getDatabase(context).UserProfileDao())
 
         override val postRepository: PostRepository by lazy {
             OfflinePostRepository(KtorDatabase.getDatabase(context).PostDao())
@@ -37,7 +36,7 @@ interface AppContainer {
             OfflinePhotoRepository(KtorDatabase.getDatabase(context).PhotoDao())
         }
 
-        override val onlineUserRepository: UserRepository by lazy {
+        override val onlineUserRepository: OnlineUserRepository by lazy {
             OnlineUserRepository()
         }
 
@@ -48,6 +47,8 @@ interface AppContainer {
         override val onlinePhotoRepository: OnlinePhotoRepository by lazy {
             OnlinePhotoRepository()
         }
+
+
 
     }
 }

@@ -15,13 +15,14 @@ object AppViewModelProvider {
         initializer {
             RegistrationScreenViewModel(
 
-                ktorApplication().container.onlineUserRepository
+                ktorApplication().container.onlineUserRepository, ktorApplication().container.offlineUserRepository
             )
         }
+
+
         initializer {
             LoginScreenViewModel(
-                ktorApplication().container.onlineUserRepository,
-
+                ktorApplication().container.onlineUserRepository,   ktorApplication().container.offlineUserRepository
             )
         }
 

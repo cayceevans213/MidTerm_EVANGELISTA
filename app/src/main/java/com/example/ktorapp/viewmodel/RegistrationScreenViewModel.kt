@@ -5,11 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.ktorapp.data.Repository.UserRepository
+import com.example.ktorapp.data.offlineRepository.OfflineUserRepository
+import com.example.ktorapp.data.onlineRepository.OnlineUserRepository
 import com.example.ktorapp.model.UserProfile
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
 
-class RegistrationScreenViewModel(private val usersRepository: UserRepository) : ViewModel() {
+class RegistrationScreenViewModel(private val onlineUserRepository: OnlineUserRepository, private val offlineUserRepository: OfflineUserRepository) : ViewModel() {
     /**
      * Holds current user ui state
      */
@@ -28,7 +30,8 @@ class RegistrationScreenViewModel(private val usersRepository: UserRepository) :
      */
     suspend fun saveUser() {
         if (validateInput()) {
-            usersRepository.insertUser(userUiState.userDetails.toUser())
+            onlineUserRepository.insertUser(userUiState.userDetails.toUser())
+            offlineUserRepository.insertUser(userUiState.userDetails.toUser())
         }
     }
     private fun validateInput(uiState: UserDetails = userUiState.userDetails): Boolean {
@@ -42,7 +45,8 @@ class RegistrationScreenViewModel(private val usersRepository: UserRepository) :
 
         //flow = usersRepository.getUserPasswordStream(userDetails.username, userDetails.password)
         try {
-            flow = usersRepository.getUserStream(username)
+            flow = onlineUserRepository.getUserStream(username);offlineUserRepository.getUserStream(username)
+
         } catch (e: Exception){
             Timber.i("SAMPLE $e")
         }

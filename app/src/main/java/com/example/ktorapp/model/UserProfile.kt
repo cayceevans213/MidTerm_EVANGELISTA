@@ -13,4 +13,5 @@ data class UserProfile(
     val password: String,
     val firstName: String,
     val lastName: String
+
 )

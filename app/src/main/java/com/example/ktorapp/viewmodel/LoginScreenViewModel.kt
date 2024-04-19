@@ -5,11 +5,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.ktorapp.data.Repository.UserRepository
+import com.example.ktorapp.data.offlineRepository.OfflineUserRepository
+import com.example.ktorapp.data.onlineRepository.OnlineUserRepository
 import com.example.ktorapp.model.UserProfile
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
 
-class LoginScreenViewModel(private val usersRepository: UserRepository) : ViewModel() {
+class LoginScreenViewModel(private val onlineUserRepository: OnlineUserRepository, private val offlineUserRepository: OfflineUserRepository) : ViewModel() {
 
     /**
      * Holds current user ui state
@@ -25,7 +27,8 @@ class LoginScreenViewModel(private val usersRepository: UserRepository) : ViewMo
         if (validateInput()) {
             //flow = usersRepository.getUserPasswordStream(userDetails.username, userDetails.password)
             try {
-                flow = usersRepository.getUserPasswordStream(userDetails.username, userDetails.password)
+                flow = onlineUserRepository.getUserPasswordStream(userDetails.username, userDetails.password);
+                offlineUserRepository.getUserPasswordStream(userDetails.username, userDetails.password)
             } catch (e: Exception){
                 Timber.i("SAMPLE $e")
             }
