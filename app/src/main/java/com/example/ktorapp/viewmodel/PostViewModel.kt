@@ -21,4 +21,5 @@ class PostViewModel(private val postRepository: PostRepository): ViewModel() {
     data class PostsUiState(
         var posts: List<Post> = emptyList()
     )
+
 }

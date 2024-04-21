@@ -143,6 +143,18 @@ fun HomePage(
                     Text("Get posts")
                 }
 
+                if (showPostData) {
+                    LazyColumn {
+                        items(postsState.posts.take(5)) { post ->
+                            Card(modifier = Modifier.padding(11.dp)) {
+                                Text(post.id.toString())
+                                Text(post.title)
+                                Text(post.body)
+                            }
+                        }
+                    }
+                }
+
                 Button(
                     onClick = {
                         coroutineScope.launch {
@@ -157,17 +169,7 @@ fun HomePage(
                 }
             }
 
-            if (showPostData) {
-                LazyColumn {
-                    items(postsState.posts.take(5)) { post ->
-                        Card(modifier = Modifier.padding(11.dp)) {
-                            Text(post.id.toString())
-                            Text(post.title)
-                            Text(post.body)
-                        }
-                    }
-                }
-            }
+
 
             if (showPhotoData) {
                 LazyColumn {
